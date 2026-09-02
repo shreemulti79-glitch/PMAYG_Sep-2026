@@ -7,7 +7,7 @@ body{
   background:#eee;
   font-family:"Noto Sans Devanagari","Mangal",Arial,sans-serif;
   color:#111;
-  font-size:15px;
+  font-size:14px;
 }
 
 .topbar{
@@ -17,22 +17,29 @@ body{
   background:#222;
   padding:10px;
   display:flex;
-  gap:8px;
+  justify-content:center;
   align-items:center;
+  gap:10px;
 }
 
 .topbar button{
   border:0;
-  padding:10px 15px;
-  border-radius:5px;
+  padding:11px 25px;
+  border-radius:6px;
   background:#fff;
   cursor:pointer;
+  font-family:inherit;
   font-weight:bold;
+  font-size:15px;
+}
+
+.topbar button:hover{
+  background:#ddd;
 }
 
 #appNo{
   color:#fff;
-  margin-left:auto;
+  margin-left:15px;
 }
 
 .paper{
@@ -43,27 +50,32 @@ body{
 
 .page{
   width:210mm;
-  min-height:148.5mm;
+  height:297mm;
+  min-height:297mm;
   padding:10mm 12mm;
   position:relative;
   background:#fff;
   overflow:hidden;
 }
 
-.page1{
-  min-height:148.5mm;
-}
-
 .page2{
-  min-height:148.5mm;
   page-break-before:always;
 }
 
 header{
   text-align:center;
   border-bottom:1px solid #000;
-  padding-bottom:5px;
+  padding-bottom:6px;
   margin-bottom:8px;
+}
+
+.logo{
+  font-size:14px;
+  margin-bottom:3px;
+}
+
+.logo span{
+  margin-left:8px;
 }
 
 header h1{
@@ -77,8 +89,8 @@ header p{
 }
 
 h2{
-  font-size:18px;
-  margin:7px 0;
+  font-size:17px;
+  margin:6px 0;
   border-bottom:1px solid #000;
   padding-bottom:3px;
 }
@@ -89,20 +101,20 @@ h2{
 
 p{
   line-height:1.35;
-  margin:5px 0;
+  margin:4px 0;
 }
 
 label{
   display:block;
-  margin:5px 0;
+  margin:4px 0;
   font-weight:500;
 }
 
 input,
 select{
   font-family:inherit;
-  font-size:14px;
-  padding:4px 5px;
+  font-size:13px;
+  padding:3px 5px;
   border:1px solid #777;
   border-radius:3px;
   background:#fff;
@@ -111,11 +123,11 @@ select{
 label > input:not([type="radio"]):not([type="checkbox"]),
 label > select{
   width:100%;
-  margin-top:3px;
+  margin-top:2px;
 }
 
 .line{
-  width:150px !important;
+  width:145px !important;
   display:inline-block !important;
   border:0;
   border-bottom:1px solid #000;
@@ -129,27 +141,27 @@ label > select{
 }
 
 .tiny{
-  width:65px !important;
+  width:55px !important;
 }
 
 .box{
-  border:1px solid #aaa;
-  padding:5px 7px;
-  margin:5px 0;
+  border:1px solid #999;
+  padding:4px 6px;
+  margin:4px 0;
   border-radius:3px;
 }
 
 .opts{
   display:flex;
   flex-wrap:wrap;
-  gap:12px;
-  margin-top:3px;
+  gap:10px;
+  margin-top:2px;
 }
 
 .opts label{
   display:inline-flex;
   align-items:center;
-  gap:4px;
+  gap:3px;
   margin:0;
 }
 
@@ -168,25 +180,32 @@ label > select{
 
 .signature{
   text-align:right;
-  margin-top:8px;
+  margin-top:6px;
 }
 
 .signspace{
-  height:20px;
+  height:18px;
 }
 
 .aff{
   text-align:justify;
-  line-height:1.8;
+  line-height:2;
   font-size:16px;
-  margin-top:20px;
+  margin-top:25px;
 }
 
 .aff-sign{
-  margin-top:35px;
+  margin-top:45px;
   margin-left:65%;
   text-align:center;
   width:30%;
+}
+
+.logo2{
+  text-align:center;
+  font-size:15px;
+  border-bottom:1px solid #000;
+  padding-bottom:5px;
 }
 
 footer{
@@ -199,6 +218,9 @@ footer{
   border-top:1px solid #000;
   padding-top:4px;
 }
+
+
+/* ================= MOBILE ================= */
 
 @media(max-width:800px){
 
@@ -213,13 +235,10 @@ footer{
 
   .page{
     width:100%;
+    height:auto;
     min-height:auto;
     padding:15px;
-  }
-
-  .page1,
-  .page2{
-    min-height:auto;
+    overflow:visible;
   }
 
   .two{
@@ -233,7 +252,8 @@ footer{
 
   #appNo{
     width:100%;
-    margin-left:0;
+    text-align:center;
+    margin:0;
   }
 
   footer{
@@ -241,7 +261,11 @@ footer{
     bottom:auto;
     margin-top:30px;
   }
+
 }
+
+
+/* ================= PRINT ================= */
 
 @media print{
 
@@ -266,9 +290,9 @@ footer{
 
   .page{
     width:210mm;
-    height:148.5mm;
-    min-height:148.5mm;
-    padding:9mm 12mm;
+    height:297mm;
+    min-height:297mm;
+    padding:10mm 12mm;
     overflow:hidden;
   }
 
@@ -288,4 +312,20 @@ footer{
   input[type="checkbox"]{
     appearance:auto;
   }
+
+}
+
+
+/* ================= PDF MODE ================= */
+
+.pdf-mode{
+  background:#fff !important;
+}
+
+.pdf-mode .page{
+  box-shadow:none !important;
+}
+
+.pdf-mode .no-print{
+  display:none !important;
 }
