@@ -5,7 +5,6 @@
 body {
     margin: 0;
     padding: 20px;
-
     background: #f2f2f2;
 
     font-family:
@@ -17,11 +16,8 @@ body {
     color: #222;
 }
 
-
 .container {
-
     max-width: 850px;
-
     margin: auto;
 
     background: #ffffff;
@@ -31,14 +27,15 @@ body {
     border-radius: 10px;
 
     box-shadow:
-        0 2px 12px rgba(0,0,0,0.15);
+        0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 
-/* Header */
+/* =========================
+   HEADER
+========================= */
 
 .header {
-
     text-align: center;
 
     margin-bottom: 25px;
@@ -48,9 +45,7 @@ body {
     padding-bottom: 15px;
 }
 
-
 .header h1 {
-
     margin: 0;
 
     font-size: 30px;
@@ -58,27 +53,24 @@ body {
     font-weight: bold;
 }
 
-
 .header h3 {
-
     margin: 8px 0;
 
     font-size: 20px;
 }
 
-
 .location {
-
     font-size: 19px;
 
     font-weight: bold;
 }
 
 
-/* Section */
+/* =========================
+   SECTION TITLE
+========================= */
 
 .section-title {
-
     margin-top: 25px;
 
     margin-bottom: 15px;
@@ -95,10 +87,11 @@ body {
 }
 
 
-/* Form */
+/* =========================
+   FORM
+========================= */
 
 label {
-
     display: block;
 
     margin-top: 12px;
@@ -106,10 +99,8 @@ label {
     font-weight: bold;
 }
 
-
 input,
 select {
-
     width: 100%;
 
     padding: 10px;
@@ -127,23 +118,22 @@ select {
     font-family: inherit;
 }
 
-
 input:focus,
 select:focus {
-
     outline: none;
 
     border-color: #555;
 
     box-shadow:
-        0 0 3px rgba(0,0,0,0.2);
+        0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 
-/* Radio */
+/* =========================
+   RADIO / CHECKBOX
+========================= */
 
 .radio-box {
-
     display: flex;
 
     flex-wrap: wrap;
@@ -153,9 +143,7 @@ select:focus {
     margin: 8px 0 15px;
 }
 
-
 .radio-box label {
-
     display: flex;
 
     align-items: center;
@@ -167,35 +155,38 @@ select:focus {
     margin: 0;
 }
 
-
 .radio-box input {
-
     width: auto;
 
     margin: 0;
 }
 
 
-/* Paragraph */
+/* =========================
+   QUESTION
+========================= */
+
+.question {
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   DECLARATION
+========================= */
 
 .declaration {
-
     line-height: 1.8;
 
     text-align: justify;
 }
 
 
-.question {
-
-    margin-bottom: 15px;
-}
-
-
-/* Signature */
+/* =========================
+   SIGNATURE
+========================= */
 
 .signature {
-
     text-align: right;
 
     margin-top: 25px;
@@ -204,10 +195,11 @@ select:focus {
 }
 
 
-/* Submit */
+/* =========================
+   SUBMIT BUTTON
+========================= */
 
 .submit-btn {
-
     width: 100%;
 
     padding: 14px;
@@ -229,17 +221,16 @@ select:focus {
     cursor: pointer;
 }
 
-
 .submit-btn:hover {
-
     background: #146c43;
 }
 
 
-/* Success */
+/* =========================
+   SUCCESS BOX
+========================= */
 
 .success-box {
-
     display: none;
 
     margin-top: 25px;
@@ -256,8 +247,11 @@ select:focus {
 }
 
 
-.application-number {
+/* =========================
+   APPLICATION NUMBER
+========================= */
 
+.application-number {
     background: white;
 
     padding: 12px;
@@ -274,9 +268,12 @@ select:focus {
 }
 
 
+/* =========================
+   BUTTONS
+========================= */
+
 .print-btn,
 .whatsapp-btn {
-
     border: none;
 
     padding: 12px 20px;
@@ -293,105 +290,87 @@ select:focus {
 }
 
 
-.print-btn {
+/* PRINT */
 
+.print-btn {
     background: #0d6efd;
 }
 
 
-.whatsapp-btn {
+/* WHATSAPP */
 
+.whatsapp-btn {
     background: #198754;
 }
 
 
-/* Mobile */
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 600px) {
 
     body {
-
         padding: 5px;
-
     }
 
     .container {
-
         padding: 15px;
 
         border-radius: 5px;
-
     }
 
     .header h1 {
-
         font-size: 23px;
-
     }
 
     .header h3 {
-
         font-size: 17px;
-
     }
 
     .location {
-
         font-size: 16px;
-
     }
 
     .section-title {
-
         font-size: 18px;
-
     }
 
     .radio-box {
-
         gap: 12px;
-
     }
-
 }
 
 
-/* Print */
+/* =========================
+   PRINT / PDF
+========================= */
 
 @media print {
 
     body {
-
         background: white;
 
         padding: 0;
-
     }
 
     .container {
-
         max-width: 100%;
 
         padding: 10px;
 
         box-shadow: none;
-
     }
 
     .submit-btn,
     .success-box {
-
         display: none !important;
-
     }
 
     input,
     select {
-
         border: none;
 
         border-bottom: 1px solid #555;
-
     }
-
 }
