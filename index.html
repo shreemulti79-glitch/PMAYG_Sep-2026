@@ -8,7 +8,7 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- PDF साठी -->
+  <!-- PDF बनवण्यासाठी -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -18,13 +18,21 @@
 <form id="form">
 
   <!-- ================= PAGE 1 ================= -->
+
   <section class="page page1">
 
     <header>
       <h1>प्रधानमंत्री आवास योजना</h1>
-      <h2>प्रतिक्षा यादीत नाव समाविष्ट करणेसाठी अर्ज</h2>
-      <p>ता. भोकरदन, जि. जालना</p>
+
+      <h2>
+        प्रतिक्षा यादीत नाव समाविष्ट करणेसाठी अर्ज
+      </h2>
+
+      <p>
+        ता. भोकरदन, जि. जालना
+      </p>
     </header>
+
 
     <div class="notice">
       <b>अर्जदारासाठी सूचना :</b>
@@ -32,10 +40,19 @@
       अर्जातील सर्व माहिती काळजीपूर्वक व अचूक भरावी.
     </div>
 
-    <h3 class="section-title">अर्जदाराची माहिती</h3>
+
+    <h3 class="section-title">
+      अर्जदाराची माहिती
+    </h3>
+
+
+    <!-- 1 -->
 
     <div class="question">
-      <label>1. अर्जदाराचे पूर्ण नाव <span>*</span></label>
+      <label>
+        1. अर्जदाराचे पूर्ण नाव <span>*</span>
+      </label>
+
       <input
         type="text"
         id="applicantName"
@@ -44,210 +61,458 @@
         placeholder="पूर्ण नाव लिहा">
     </div>
 
+
+    <!-- 2 -->
+
     <div class="question">
-      <label>2. वडील / पतीचे नाव <span>*</span></label>
-      <input type="text" name="father_husband" required>
+      <label>
+        2. वडील / पतीचे नाव <span>*</span>
+      </label>
+
+      <input
+        type="text"
+        name="father_husband"
+        required>
     </div>
 
+
+    <!-- 3 + 4 -->
+
     <div class="row">
-      <div class="question">
-        <label>3. जन्मतारीख <span>*</span></label>
-        <input type="date" name="dob" required>
-      </div>
 
       <div class="question">
-        <label>4. मोबाईल क्रमांक <span>*</span></label>
+
+        <label>
+          3. जन्मतारीख <span>*</span>
+        </label>
+
+        <input
+          type="date"
+          name="dob"
+          required>
+
+      </div>
+
+
+      <div class="question">
+
+        <label>
+          4. मोबाईल क्रमांक <span>*</span>
+        </label>
+
         <input
           type="tel"
           name="mobile"
           maxlength="10"
           pattern="[0-9]{10}"
           required>
+
       </div>
+
     </div>
 
+
+    <!-- 5 -->
+
     <div class="question">
-      <label>5. आधार क्रमांक <span>*</span></label>
+
+      <label>
+        5. आधार क्रमांक <span>*</span>
+      </label>
+
       <input
         type="text"
         name="aadhaar"
         maxlength="12"
         pattern="[0-9]{12}"
         required>
+
     </div>
+
+
+    <!-- 6 + 7 -->
 
     <div class="row">
-      <div class="question">
-        <label>6. गाव <span>*</span></label>
-        <input type="text" name="village" required>
-      </div>
 
       <div class="question">
-        <label>7. ग्रामपंचायत <span>*</span></label>
-        <input type="text" name="gram_panchayat" required>
+
+        <label>
+          6. गाव <span>*</span>
+        </label>
+
+        <input
+          type="text"
+          name="village"
+          required>
+
       </div>
+
+
+      <div class="question">
+
+        <label>
+          7. ग्रामपंचायत <span>*</span>
+        </label>
+
+        <input
+          type="text"
+          name="gram_panchayat"
+          required>
+
+      </div>
+
     </div>
+
+
+    <!-- 8 + 9 -->
 
     <div class="row">
-      <div class="question">
-        <label>8. तालुका</label>
-        <input type="text" value="भोकरदन" name="taluka" readonly>
-      </div>
 
       <div class="question">
-        <label>9. जिल्हा</label>
-        <input type="text" value="जालना" name="district" readonly>
+
+        <label>
+          8. तालुका
+        </label>
+
+        <input
+          type="text"
+          name="taluka"
+          value="भोकरदन"
+          readonly>
+
       </div>
+
+
+      <div class="question">
+
+        <label>
+          9. जिल्हा
+        </label>
+
+        <input
+          type="text"
+          name="district"
+          value="जालना"
+          readonly>
+
+      </div>
+
     </div>
 
-    <div class="question">
-      <label>10. कुटुंबातील सदस्य संख्या <span>*</span></label>
-      <input type="number" name="family_members" min="1" required>
-    </div>
+
+    <!-- 10 -->
 
     <div class="question">
-      <label>11. सामाजिक प्रवर्ग <span>*</span></label>
+
+      <label>
+        10. कुटुंबातील सदस्य संख्या <span>*</span>
+      </label>
+
+      <input
+        type="number"
+        name="family_members"
+        min="1"
+        required>
+
+    </div>
+
+
+    <!-- 11 -->
+
+    <div class="question">
+
+      <label>
+        11. सामाजिक प्रवर्ग <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="category" value="SC" required>
+          <input
+            type="radio"
+            name="category"
+            value="SC"
+            required>
           अनुसूचित जाती
         </label>
 
         <label>
-          <input type="radio" name="category" value="ST">
+          <input
+            type="radio"
+            name="category"
+            value="ST">
           अनुसूचित जमाती
         </label>
 
         <label>
-          <input type="radio" name="category" value="OBC">
+          <input
+            type="radio"
+            name="category"
+            value="OBC">
           इतर मागासवर्ग
         </label>
 
         <label>
-          <input type="radio" name="category" value="GENERAL">
+          <input
+            type="radio"
+            name="category"
+            value="GENERAL">
           खुला
         </label>
+
       </div>
+
     </div>
 
-    <div class="question">
-      <label>12. कुटुंबाचे वार्षिक उत्पन्न <span>*</span></label>
-      <input type="text" name="income" required>
-    </div>
+
+    <!-- 12 -->
 
     <div class="question">
-      <label>13. सध्या राहण्याचे घर कोणत्या प्रकारचे आहे? <span>*</span></label>
+
+      <label>
+        12. कुटुंबाचे वार्षिक उत्पन्न <span>*</span>
+      </label>
+
+      <input
+        type="text"
+        name="income"
+        required>
+
+    </div>
+
+
+    <!-- 13 -->
+
+    <div class="question">
+
+      <label>
+        13. सध्या राहण्याचे घर कोणत्या प्रकारचे आहे? <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="house_type" value="कच्चे" required>
+          <input
+            type="radio"
+            name="house_type"
+            value="कच्चे"
+            required>
           कच्चे
         </label>
 
         <label>
-          <input type="radio" name="house_type" value="झोपडी">
+          <input
+            type="radio"
+            name="house_type"
+            value="झोपडी">
           झोपडी
         </label>
 
         <label>
-          <input type="radio" name="house_type" value="इतर">
+          <input
+            type="radio"
+            name="house_type"
+            value="इतर">
           इतर
         </label>
+
       </div>
+
     </div>
 
+
+    <!-- 14 -->
+
     <div class="question">
-      <label>14. स्वतःच्या नावावर घर आहे का? <span>*</span></label>
+
+      <label>
+        14. स्वतःच्या नावावर घर आहे का? <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="own_house" value="होय" required>
+          <input
+            type="radio"
+            name="own_house"
+            value="होय"
+            required>
           होय
         </label>
 
         <label>
-          <input type="radio" name="own_house" value="नाही">
+          <input
+            type="radio"
+            name="own_house"
+            value="नाही">
           नाही
         </label>
+
       </div>
+
     </div>
 
+
+    <!-- 15 -->
+
     <div class="question">
-      <label>15. घर बांधण्यासाठी स्वतःची जागा आहे का? <span>*</span></label>
+
+      <label>
+        15. घर बांधण्यासाठी स्वतःची जागा आहे का? <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="land" value="होय" required>
+          <input
+            type="radio"
+            name="land"
+            value="होय"
+            required>
           होय
         </label>
 
         <label>
-          <input type="radio" name="land" value="नाही">
+          <input
+            type="radio"
+            name="land"
+            value="नाही">
           नाही
         </label>
+
       </div>
+
     </div>
 
-    <div class="question">
-      <label>16. जागेचा तपशील</label>
-      <textarea name="land_details" rows="2"></textarea>
-    </div>
+
+    <!-- 16 -->
 
     <div class="question">
-      <label>17. यापूर्वी कोणत्याही शासकीय घरकुल योजनेचा लाभ घेतला आहे का? <span>*</span></label>
+
+      <label>
+        16. जागेचा तपशील
+      </label>
+
+      <textarea
+        name="land_details"
+        rows="2"></textarea>
+
+    </div>
+
+
+    <!-- 17 -->
+
+    <div class="question">
+
+      <label>
+        17. यापूर्वी कोणत्याही शासकीय घरकुल योजनेचा लाभ घेतला आहे का? <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="previous_benefit" value="होय" required>
+          <input
+            type="radio"
+            name="previous_benefit"
+            value="होय"
+            required>
           होय
         </label>
 
         <label>
-          <input type="radio" name="previous_benefit" value="नाही">
+          <input
+            type="radio"
+            name="previous_benefit"
+            value="नाही">
           नाही
         </label>
+
       </div>
+
     </div>
 
+
+    <!-- 18 -->
+
     <div class="question">
-      <label>18. कुटुंबातील कोणताही सदस्य शासकीय / निमशासकीय नोकरीत आहे का? <span>*</span></label>
+
+      <label>
+        18. कुटुंबातील कोणताही सदस्य शासकीय / निमशासकीय नोकरीत आहे का? <span>*</span>
+      </label>
 
       <div class="options">
+
         <label>
-          <input type="radio" name="government_job" value="होय" required>
+          <input
+            type="radio"
+            name="government_job"
+            value="होय"
+            required>
           होय
         </label>
 
         <label>
-          <input type="radio" name="government_job" value="नाही">
+          <input
+            type="radio"
+            name="government_job"
+            value="नाही">
           नाही
         </label>
+
       </div>
+
     </div>
 
-    <div class="question">
-      <label>19. अर्ज करण्याचे कारण <span>*</span></label>
-      <textarea name="reason" rows="2" required></textarea>
-    </div>
+
+    <!-- 19 -->
 
     <div class="question">
-      <label>20. अतिरिक्त माहिती</label>
-      <textarea name="additional" rows="2"></textarea>
+
+      <label>
+        19. अर्ज करण्याचे कारण <span>*</span>
+      </label>
+
+      <textarea
+        name="reason"
+        rows="2"
+        required></textarea>
+
+    </div>
+
+
+    <!-- 20 -->
+
+    <div class="question">
+
+      <label>
+        20. अतिरिक्त माहिती
+      </label>
+
+      <textarea
+        name="additional"
+        rows="2"></textarea>
+
     </div>
 
   </section>
 
 
+
   <!-- ================= PAGE 2 ================= -->
+
   <section class="page page2">
 
-    <h3 class="section-title">प्रतिज्ञापत्र</h3>
+    <h3 class="section-title">
+      प्रतिज्ञापत्र
+    </h3>
+
 
     <div class="affidavit">
 
       <p>
+
         मी खाली सही करणारा/करणारी
+
         <input
           type="text"
           id="affName"
@@ -255,7 +520,9 @@
           class="inline-input"
           readonly
           form="form">
+
         रा.
+
         <input
           type="text"
           id="affVillage"
@@ -263,78 +530,110 @@
           class="inline-input"
           required
           form="form">
+
         ता. भोकरदन जि. जालना
-        येथील रहिवासी असून खालीलप्रमाणे प्रतिज्ञापूर्वक नमूद करतो/करते की,
+        येथील रहिवासी असून खालीलप्रमाणे
+        प्रतिज्ञापूर्वक नमूद करतो/करते की,
+
       </p>
+
 
       <ol>
+
         <li>
-          वरील अर्जामध्ये दिलेली सर्व माहिती माझ्या माहितीनुसार खरी व बरोबर आहे.
+          वरील अर्जामध्ये दिलेली सर्व माहिती
+          माझ्या माहितीनुसार खरी व बरोबर आहे.
         </li>
 
         <li>
-          माझ्या कुटुंबाकडे शासनाच्या नियमानुसार पक्के घर उपलब्ध नाही.
+          माझ्या कुटुंबाकडे शासनाच्या नियमानुसार
+          पक्के घर उपलब्ध नाही.
         </li>
 
         <li>
-          प्रधानमंत्री आवास योजना-ग्रामीण अंतर्गत घरकुलाचा लाभ मिळण्यासाठी
-          मी पात्र असल्यास मला लाभ देण्यात यावा.
+          प्रधानमंत्री आवास योजना-ग्रामीण अंतर्गत
+          घरकुलाचा लाभ मिळण्यासाठी मी पात्र असल्यास
+          मला लाभ देण्यात यावा.
         </li>
 
         <li>
-          अर्जामध्ये चुकीची किंवा खोटी माहिती आढळल्यास त्याची संपूर्ण जबाबदारी
-          माझी राहील.
+          अर्जामध्ये चुकीची किंवा खोटी माहिती आढळल्यास
+          त्याची संपूर्ण जबाबदारी माझी राहील.
         </li>
 
         <li>
-          शासनाने वेळोवेळी घालून दिलेल्या सर्व अटी व नियम मला मान्य आहेत.
+          शासनाने वेळोवेळी घालून दिलेल्या सर्व अटी
+          व नियम मला मान्य आहेत.
         </li>
+
       </ol>
 
+
       <p>
-        वरील माहिती माझ्या माहितीनुसार सत्य असून ती खोटी आढळल्यास
-        शासनाच्या नियमानुसार होणारी कारवाई मला मान्य राहील.
+
+        वरील माहिती माझ्या माहितीनुसार सत्य असून
+        ती खोटी आढळल्यास शासनाच्या नियमानुसार
+        होणारी कारवाई मला मान्य राहील.
+
       </p>
 
     </div>
 
 
-    <!-- BRANDING 1 : MIDDLE -->
-    <div class="brand-middle">
-      <b>श्री मल्टी सर्विसेस आडगाव</b>
-      <span>7972254110</span>
-    </div>
 
+    <!-- SIGNATURE -->
 
     <div class="signature-area">
 
       <div>
-        <label>ठिकाण</label>
+
+        <label>
+          ठिकाण
+        </label>
+
         <input
           type="text"
           name="place"
           value="आडगाव"
           required
           form="form">
+
       </div>
 
+
       <div>
-        <label>दिनांक</label>
+
+        <label>
+          दिनांक
+        </label>
+
         <input
           type="date"
           id="affDate"
           name="aff_date"
           required
           form="form">
+
       </div>
 
+
       <div>
-        <label>अर्जदाराची सही</label>
+
+        <label>
+          अर्जदाराची सही
+        </label>
+
         <div class="signature-box"></div>
+
       </div>
 
+
       <div>
-        <label>अर्जदाराचे नाव</label>
+
+        <label>
+          अर्जदाराचे नाव
+        </label>
+
         <input
           type="text"
           id="affSignName"
@@ -342,23 +641,41 @@
           readonly
           required
           form="form">
+
       </div>
 
     </div>
 
 
-    <!-- BUTTON AT END -->
+
+    <!-- ================= शेवटचे बटन ================= -->
+
     <div class="submit-area no-print">
-      <button type="button" onclick="submitForm()">
+
+      <button
+        type="button"
+        onclick="submitForm()">
+
         अर्ज जमा करा
+
       </button>
+
     </div>
 
 
-    <!-- BRANDING 2 : TRUE END -->
+
+    <!-- ================= फॉर्मच्या अगदी शेवटी BRANDING ================= -->
+
     <footer>
-      <b>श्री मल्टी सर्विसेस आडगाव</b>
-      <span>7972254110</span>
+
+      <b>
+        श्री मल्टी सर्विसेस आडगाव
+      </b>
+
+      <span>
+        7972254110
+      </span>
+
     </footer>
 
   </section>
