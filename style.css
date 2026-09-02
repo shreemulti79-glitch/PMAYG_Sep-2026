@@ -2,10 +2,15 @@
     box-sizing: border-box;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     margin: 0;
-    padding: 20px;
-    background: #f2f2f2;
+    padding: 30px 10px;
+    background: #eaf6ff;
 
     font-family:
         "Noto Sans Devanagari",
@@ -13,134 +18,200 @@ body {
         Arial,
         sans-serif;
 
-    color: #222;
+    color: #172033;
 }
 
+
+/* =====================================================
+   MAIN CONTAINER
+===================================================== */
+
 .container {
-    max-width: 850px;
-    margin: auto;
+    width: 760px;
+    max-width: 100%;
+
+    margin: 0 auto;
 
     background: #ffffff;
 
-    padding: 30px;
+    padding: 35px;
 
-    border-radius: 10px;
+    border-radius: 20px;
 
     box-shadow:
-        0 2px 12px rgba(0, 0, 0, 0.15);
+        0 5px 30px rgba(0, 0, 0, 0.08);
 }
 
 
-/* =========================
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 .header {
     text-align: center;
 
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 
-    border-bottom: 2px solid #222;
+    border: none;
 
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
 
 .header h1 {
     margin: 0;
 
+    color: #2867d8;
+
     font-size: 30px;
 
-    font-weight: bold;
+    font-weight: 700;
 }
 
 .header h3 {
-    margin: 8px 0;
+    margin: 10px 0 0;
 
-    font-size: 20px;
+    color: #526078;
+
+    font-size: 17px;
+
+    font-weight: 500;
 }
 
 .location {
-    font-size: 19px;
-
-    font-weight: bold;
+    display: none;
 }
 
 
-/* =========================
+/* =====================================================
    SECTION TITLE
-========================= */
+===================================================== */
 
 .section-title {
-    margin-top: 25px;
+    position: relative;
 
-    margin-bottom: 15px;
+    margin-top: 28px;
+    margin-bottom: 22px;
 
-    padding: 10px;
+    padding: 0 0 10px;
 
-    background: #eeeeee;
+    background: transparent;
 
-    border-left: 5px solid #333;
+    border-left: none;
 
-    font-size: 20px;
+    color: #2867d8;
 
-    font-weight: bold;
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: "";
+
+    display: block;
+
+    width: 115px;
+
+    height: 3px;
+
+    margin-top: 6px;
+
+    background: #2867d8;
+
+    border-radius: 10px;
 }
 
 
-/* =========================
-   FORM
-========================= */
+/* =====================================================
+   FORM LABEL
+===================================================== */
 
 label {
     display: block;
 
-    margin-top: 12px;
+    margin-top: 13px;
 
-    font-weight: bold;
+    margin-bottom: 7px;
+
+    color: #182338;
+
+    font-size: 15px;
+
+    font-weight: 600;
 }
+
+
+/* =====================================================
+   INPUT / SELECT
+===================================================== */
 
 input,
 select {
     width: 100%;
 
-    padding: 10px;
+    height: 42px;
 
-    margin-top: 6px;
+    padding: 9px 13px;
 
-    margin-bottom: 12px;
+    margin: 0 0 13px;
 
-    border: 1px solid #aaa;
+    background: #ffffff;
 
-    border-radius: 5px;
+    border: 1px solid #ccd6e5;
 
-    font-size: 16px;
+    border-radius: 7px;
+
+    outline: none;
 
     font-family: inherit;
+
+    font-size: 15px;
+
+    color: #202735;
 }
 
 input:focus,
 select:focus {
-    outline: none;
-
-    border-color: #555;
+    border-color: #2867d8;
 
     box-shadow:
-        0 0 3px rgba(0, 0, 0, 0.2);
+        0 0 0 2px rgba(40, 103, 216, 0.08);
 }
 
 
-/* =========================
-   RADIO / CHECKBOX
-========================= */
+/* =====================================================
+   DATE
+===================================================== */
+
+input[type="date"] {
+    height: 43px;
+}
+
+
+/* =====================================================
+   RADIO BOX
+===================================================== */
 
 .radio-box {
     display: flex;
 
     flex-wrap: wrap;
 
-    gap: 20px;
+    align-items: center;
 
-    margin: 8px 0 15px;
+    gap: 22px;
+
+    min-height: 50px;
+
+    padding: 9px 13px;
+
+    margin-bottom: 15px;
+
+    background: #ffffff;
+
+    border: 1px solid #d8e0eb;
+
+    border-radius: 7px;
 }
 
 .radio-box label {
@@ -148,229 +219,418 @@ select:focus {
 
     align-items: center;
 
-    gap: 5px;
-
-    font-weight: normal;
+    gap: 7px;
 
     margin: 0;
+
+    padding: 0;
+
+    font-size: 15px;
+
+    font-weight: 400;
 }
 
-.radio-box input {
-    width: auto;
+.radio-box input[type="radio"] {
+    width: 18px;
+    height: 18px;
 
     margin: 0;
+
+    accent-color: #2867d8;
 }
 
 
-/* =========================
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+
+    margin: 0 7px 0 0;
+
+    vertical-align: middle;
+
+    accent-color: #2867d8;
+}
+
+
+/* =====================================================
    QUESTION
-========================= */
+===================================================== */
 
 .question {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 
-/* =========================
+/* =====================================================
+   TWO COLUMN
+===================================================== */
+
+.row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+/* =====================================================
    DECLARATION
-========================= */
+===================================================== */
 
 .declaration {
-    line-height: 1.8;
+    line-height: 2;
 
     text-align: justify;
+
+    font-size: 15px;
+
+    margin-top: 20px;
 }
 
 
-/* =========================
+/* =====================================================
    SIGNATURE
-========================= */
+===================================================== */
 
 .signature {
     text-align: right;
 
-    margin-top: 25px;
+    margin-top: 35px;
 
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.signature-line {
+    display: inline-block;
+
+    width: 250px;
+
+    border-bottom: 1px solid #333;
+
+    margin-top: 30px;
 }
 
 
-/* =========================
+/* =====================================================
    SUBMIT BUTTON
-========================= */
+===================================================== */
 
 .submit-btn {
-    width: 100%;
+    display: block;
 
-    padding: 14px;
+    width: 220px;
 
-    margin-top: 25px;
+    height: 50px;
 
-    background: #198754;
-
-    color: white;
+    margin: 35px auto 5px;
 
     border: none;
 
-    border-radius: 6px;
+    border-radius: 28px;
 
-    font-size: 19px;
+    background: #286fe6;
 
-    font-weight: bold;
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    font-weight: 700;
 
     cursor: pointer;
+
+    box-shadow:
+        0 5px 15px rgba(40, 111, 230, 0.25);
+
+    transition: 0.2s;
 }
 
 .submit-btn:hover {
-    background: #146c43;
+    background: #185bc9;
+
+    transform: translateY(-1px);
 }
 
 
-/* =========================
+/* =====================================================
    SUCCESS BOX
-========================= */
+===================================================== */
 
 .success-box {
     display: none;
 
     margin-top: 25px;
 
-    padding: 25px;
+    padding: 20px;
 
-    background: #d1e7dd;
-
-    color: #0f5132;
+    background: #e8f7ee;
 
     border-radius: 8px;
 
     text-align: center;
+
+    color: #146c43;
 }
 
-
-/* =========================
-   APPLICATION NUMBER
-========================= */
-
 .application-number {
-    background: white;
+    padding: 10px;
 
-    padding: 12px;
+    margin: 10px auto;
 
-    margin: 10px auto 20px;
+    max-width: 320px;
 
-    max-width: 300px;
+    background: #ffffff;
 
     border-radius: 5px;
 
-    font-size: 22px;
+    font-size: 20px;
 
     font-weight: bold;
 }
 
 
-/* =========================
-   BUTTONS
-========================= */
+/* =====================================================
+   PRINT BUTTONS
+===================================================== */
 
 .print-btn,
 .whatsapp-btn {
-    border: none;
-
-    padding: 12px 20px;
+    padding: 11px 20px;
 
     margin: 5px;
 
-    border-radius: 5px;
+    border: none;
+
+    border-radius: 6px;
 
     color: white;
 
-    font-size: 16px;
+    font-family: inherit;
+
+    font-size: 15px;
 
     cursor: pointer;
 }
 
-
-/* PRINT */
-
 .print-btn {
     background: #0d6efd;
 }
-
-
-/* WHATSAPP */
 
 .whatsapp-btn {
     background: #198754;
 }
 
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
     body {
-        padding: 5px;
+        padding: 10px 5px;
     }
 
     .container {
-        padding: 15px;
+        width: 100%;
 
-        border-radius: 5px;
+        padding: 20px 15px;
+
+        border-radius: 10px;
     }
 
     .header h1 {
-        font-size: 23px;
+        font-size: 24px;
     }
 
     .header h3 {
-        font-size: 17px;
-    }
-
-    .location {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .section-title {
-        font-size: 18px;
+        font-size: 19px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .radio-box {
-        gap: 12px;
+        gap: 15px;
     }
 }
 
 
-/* =========================
-   PRINT / PDF
-========================= */
+/* =====================================================
+   A4 PRINT
+===================================================== */
 
 @media print {
 
+    @page {
+        size: A4 portrait;
+
+        margin: 0;
+    }
+
+    html,
     body {
-        background: white;
+        width: 210mm;
+
+        margin: 0;
 
         padding: 0;
+
+        background: white;
+    }
+
+    body {
+        font-size: 13px;
     }
 
     .container {
-        max-width: 100%;
+        width: 210mm;
 
-        padding: 10px;
+        max-width: 210mm;
+
+        min-height: 297mm;
+
+        margin: 0;
+
+        padding: 12mm 16mm;
+
+        border-radius: 0;
 
         box-shadow: none;
+
+        background: white;
     }
 
-    .submit-btn,
-    .success-box {
-        display: none !important;
+    .header {
+        margin-bottom: 15px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .header h3 {
+        font-size: 14px;
+    }
+
+    .section-title {
+        font-size: 17px;
+
+        margin-top: 12px;
+
+        margin-bottom: 10px;
+    }
+
+    label {
+        font-size: 12px;
+
+        margin-top: 7px;
+
+        margin-bottom: 4px;
     }
 
     input,
     select {
-        border: none;
+        height: 32px;
 
-        border-bottom: 1px solid #555;
+        padding: 5px 8px;
+
+        margin-bottom: 7px;
+
+        border: 1px solid #777;
+
+        font-size: 12px;
+
+        box-shadow: none;
+    }
+
+    .radio-box {
+        min-height: 36px;
+
+        padding: 5px 8px;
+
+        gap: 15px;
+
+        margin-bottom: 8px;
+
+        border: 1px solid #aaa;
+    }
+
+    .radio-box label {
+        font-size: 12px;
+    }
+
+    .radio-box input[type="radio"] {
+        width: 14px;
+        height: 14px;
+    }
+
+    .question {
+        margin-bottom: 7px;
+    }
+
+    .declaration {
+        font-size: 12px;
+
+        line-height: 1.8;
+    }
+
+    .signature {
+        margin-top: 25px;
+    }
+
+    .submit-btn,
+    .success-box,
+    .print-btn,
+    .whatsapp-btn {
+        display: none !important;
+    }
+
+
+    /* -----------------------------------------------
+       PAGE BREAK
+       Page 1 आणि Page 2 वेगळे
+    ------------------------------------------------ */
+
+    .page-1 {
+        page-break-after: always;
+
+        break-after: page;
+
+        min-height: 297mm;
+    }
+
+    .page-2 {
+        page-break-before: always;
+
+        break-before: page;
+
+        min-height: 297mm;
+    }
+
+
+    /* -----------------------------------------------
+       PDF मध्ये input text स्पष्ट दिसण्यासाठी
+    ------------------------------------------------ */
+
+    input::placeholder {
+        color: #777;
+        opacity: 1;
+    }
+
+    select {
+        appearance: none;
     }
 }
