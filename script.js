@@ -1,215 +1,248 @@
-const form = document.getElementById("form");
+document.addEventListener("DOMContentLoaded", function () {
+
+    const form = document.getElementById("pmayForm");
+
+    const date = document.getElementById("date");
+
+    const affidavitDate =
+        document.getElementById("affidavitDate");
 
 
-/* ==========================
-   नाव Automatic
-========================== */
+    // आजची तारीख
 
-function syncName(){
+    const today = new Date();
 
-    const name =
-        document.getElementById("applicantName").value;
-
-    document.getElementById("introName").value = name;
-
-    document.getElementById("affName").value = name;
-
-    document.getElementById("signName1").value = name;
-
-    document.getElementById("signName2").value = name;
-}
+    const formattedDate =
+        today.toISOString().split("T")[0];
 
 
-/* ==========================
-   अर्जदाराचे गाव
-========================== */
+    date.value = formattedDate;
 
-function syncVillage(){
-
-    const village =
-        document.querySelector('input[name="village"]').value;
-
-    document.getElementById("affVillage").value = village;
-}
+    affidavitDate.value = formattedDate;
 
 
-/* ==========================
-   PDF तयार करा
-========================== */
+    // Form Submit
 
-async function submitForm(){
+    form.addEventListener("submit", function (event) {
 
-    syncName();
-    syncVillage();
-
-    if(!form.reportValidity()){
-
-        alert(
-            "कृपया अर्जातील सर्व आवश्यक माहिती पूर्ण भरा."
-        );
-
-        return;
-    }
+        event.preventDefault();
 
 
-    const buttonArea =
-        document.querySelector(".submit-area");
+        // Mobile validation
+
+        const mobile =
+            document.getElementById("mobile").value.trim();
 
 
-    buttonArea.style.visibility = "hidden";
+        if (!/^[0-9]{10}$/.test(mobile)) {
+
+            alert(
+                "कृपया योग्य १० अंकी मोबाईल नंबर टाका."
+            );
+
+            return;
+        }
 
 
-    try{
+        // Aadhaar validation
 
-        const { jsPDF } = window.jspdf;
+        const aadhaar =
+            document.getElementById("aadhaar").value.trim();
 
 
-        const pdf = new jsPDF({
+        if (
+            aadhaar !== "" &&
+            !/^[0-9]{12}$/.test(aadhaar)
+        ) {
 
-            orientation:"portrait",
+            alert(
+                "कृपया योग्य १२ अंकी आधार नंबर टाका."
+            );
 
-            unit:"mm",
+            return;
+        }
 
-            format:"a4",
 
-            compress:true
+        // Application Number
+
+        const applicationNumber =
+            generateApplicationNumber();
+
+
+        document.getElementById(
+            "applicationNumber"
+        ).innerText = applicationNumber;
+
+
+        // Form Data
+
+        const formData =
+            new FormData(form);
+
+
+        const data = {};
+
+
+        formData.forEach(function (value, key) {
+
+            data[key] = value;
 
         });
 
 
-        const pages =
-            document.querySelectorAll(".page");
+        data.applicationNumber =
+            applicationNumber;
+
+        data.createdAt =
+            new Date().toLocaleString("mr-IN");
 
 
-        for(let i=0; i<pages.length; i++){
+        data.district =
+            "जालना";
 
-            const canvas =
-                await html2canvas(
-                    pages[i],
-                    {
-                        scale:2,
-                        useCORS:true,
-                        backgroundColor:"#ffffff",
-                        logging:false
-                    }
-                );
+        data.taluka =
+            "भोकरदन";
 
 
-            const image =
-                canvas.toDataURL(
-                    "image/jpeg",
-                    0.90
-                );
+        // Browser Local Storage
 
-
-            if(i > 0){
-
-                pdf.addPage(
-                    "a4",
-                    "portrait"
-                );
-
-            }
-
-
-            pdf.addImage(
-                image,
-                "JPEG",
-                0,
-                0,
-                210,
-                297,
-                undefined,
-                "FAST"
-            );
-
-        }
-
-
-        let name =
-            document
-            .getElementById("applicantName")
-            .value
-            .trim();
-
-
-        if(!name){
-
-            name = "अर्जदार";
-
-        }
-
-
-        name =
-            name.replace(
-                /[\\\/:*?"<>|]/g,
-                "_"
-            );
-
-
-        pdf.save(
-            "PMAYG_" + name + ".pdf"
+        localStorage.setItem(
+            "pmayApplication",
+            JSON.stringify(data)
         );
+
+
+        // Success Box
+
+        document.getElementById(
+            "successBox"
+        ).style.display = "block";
+
+
+        // Scroll
+
+        document.getElementById(
+            "successBox"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
 
 
         alert(
-            "अर्ज यशस्वीरित्या PDF मध्ये तयार झाला."
+            "अर्ज यशस्वीरित्या जमा झाला!"
         );
 
-    }
+    });
 
-    catch(error){
+});
 
-        console.error(error);
 
-        alert(
-            "PDF तयार करताना समस्या आली. पुन्हा प्रयत्न करा."
+
+/*
+    अर्ज क्रमांक तयार करणे
+*/
+
+function generateApplicationNumber() {
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(now.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day =
+        String(now.getDate())
+        .padStart(2, "0");
+
+
+    const random =
+        Math.floor(
+            1000 + Math.random() * 9000
         );
 
-    }
 
-    finally{
-
-        buttonArea.style.visibility = "visible";
-
-    }
+    return (
+        "PMAYG-" +
+        year +
+        month +
+        day +
+        "-" +
+        random
+    );
 
 }
 
 
-/* ==========================
-   PAGE LOAD
-========================== */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function(){
+/*
+    Print / PDF
+*/
 
-        const nameInput =
-            document.getElementById("applicantName");
+function printApplication() {
 
+    window.print();
 
-        const villageInput =
-            document.querySelector(
-                'input[name="village"]'
-            );
+}
 
 
-        nameInput.addEventListener(
-            "input",
-            syncName
+
+/*
+    WhatsApp Share
+*/
+
+function sendWhatsApp() {
+
+    const data =
+        JSON.parse(
+            localStorage.getItem(
+                "pmayApplication"
+            )
         );
 
 
-        villageInput.addEventListener(
-            "input",
-            syncVillage
+    if (!data) {
+
+        alert(
+            "अर्जाची माहिती उपलब्ध नाही."
         );
 
-
-        syncName();
-
-        syncVillage();
+        return;
 
     }
-);
+
+
+    const message =
+
+        "प्रधानमंत्री आवास योजना - घरकुल अर्ज%0A%0A" +
+
+        "अर्ज क्रमांक: " +
+        data.applicationNumber +
+        "%0A" +
+
+        "नाव: " +
+        (data.applicantName || data.name || "") +
+        "%0A" +
+
+        "मोबाईल: " +
+        (data.mobile || "") +
+        "%0A" +
+
+        "तालुका: भोकरदन%0A" +
+
+        "जिल्हा: जालना";
+
+
+    const whatsappURL =
+        "https://wa.me/?text=" +
+        message;
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
