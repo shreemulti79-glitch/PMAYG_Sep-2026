@@ -1,157 +1,251 @@
 const form = document.getElementById("form");
+
 const appNo = document.getElementById("appNo");
 
+const applicantName =
+  document.getElementById("applicantName");
+
+const affName =
+  document.getElementById("affName");
+
+const signName =
+  document.getElementById("signName");
+
+const affSignName =
+  document.getElementById("affSignName");
+
+
+
+/* ================= अर्ज क्रमांक ================= */
+
 function generateAppNo(){
+
   const d = new Date();
 
   const year = d.getFullYear();
-  const month = String(d.getMonth()+1).padStart(2,"0");
-  const day = String(d.getDate()).padStart(2,"0");
 
-  const random = Math.floor(1000 + Math.random()*9000);
+  const month =
+    String(d.getMonth()+1).padStart(2,"0");
 
-  return "PMAYG-" + year + month + day + "-" + random;
+  const day =
+    String(d.getDate()).padStart(2,"0");
+
+  const random =
+    Math.floor(1000 + Math.random()*9000);
+
+  return "PMAYG-" +
+    year +
+    month +
+    day +
+    "-" +
+    random;
 }
+
 
 function setAppNo(){
-  let no = localStorage.getItem("pmayg_current_app");
+
+  let no =
+    localStorage.getItem("pmayg_current_app");
 
   if(!no){
+
     no = generateAppNo();
-    localStorage.setItem("pmayg_current_app",no);
+
+    localStorage.setItem(
+      "pmayg_current_app",
+      no
+    );
+
   }
 
-  appNo.textContent = "अर्ज क्र.: " + no;
+  appNo.textContent =
+    "अर्ज क्र.: " + no;
 }
 
-function saveForm(){
+
+
+/* ================= नाव Automatic ================= */
+
+function syncName(){
+
+  const name =
+    applicantName.value.trim();
+
+  affName.value = name;
+
+  signName.value = name;
+
+  affSignName.value = name;
+}
+
+
+/* अर्जदाराचे नाव टाइप करताना लगेच बदलावे */
+
+applicantName.addEventListener(
+  "input",
+  syncName
+);
+
+
+
+/* ================= PDF ================= */
+
+async function submitForm(){
+
+  syncName();
+
+
+  /* सर्व required माहिती तपासा */
 
   if(!form.reportValidity()){
-    alert("कृपया सर्व आवश्यक माहिती भरा.");
+
+    alert(
+      "कृपया अर्जातील सर्व आवश्यक माहिती पूर्ण भरा."
+    );
+
     return;
   }
 
-  const data = {};
 
-  const elements = form.querySelectorAll("input,select,textarea");
+  /* PDF library तपासा */
 
-  elements.forEach(el => {
+  if(
+    typeof html2canvas === "undefined" ||
+    typeof window.jspdf === "undefined"
+  ){
 
-    if(el.type === "radio"){
-      if(el.checked){
-        data[el.name] = el.value;
-      }
-    }
+    alert(
+      "PDF प्रणाली लोड झाली नाही. कृपया इंटरनेट तपासा आणि पुन्हा प्रयत्न करा."
+    );
 
-    else if(el.type === "checkbox"){
-      data[el.name] = el.checked;
-    }
+    return;
+  }
 
-    else{
-      data[el.name] = el.value;
-    }
 
-  });
+  const button =
+    document.querySelector(".topbar button");
 
-  localStorage.setItem("pmayg_form_data",JSON.stringify(data));
+  button.disabled = true;
 
-  alert("अर्ज यशस्वीरित्या जतन झाला.");
-}
+  button.textContent =
+    "PDF तयार होत आहे...";
 
-function loadForm(){
 
-  const saved = localStorage.getItem("pmayg_form_data");
+  document.body.classList.add("pdf-mode");
 
-  if(!saved) return;
 
   try{
 
-    const data = JSON.parse(saved);
+    const {
+      jsPDF
+    } = window.jspdf;
 
-    Object.keys(data).forEach(name => {
 
-      const elements = form.querySelectorAll('[name="'+name+'"]');
-
-      elements.forEach(el => {
-
-        if(el.type === "radio"){
-          el.checked = el.value === data[name];
-        }
-
-        else if(el.type === "checkbox"){
-          el.checked = data[name] === true;
-        }
-
-        else{
-          el.value = data[name];
-        }
-
+    const pdf =
+      new jsPDF({
+        orientation:"portrait",
+        unit:"mm",
+        format:"a4",
+        compress:true
       });
 
-    });
 
-  }catch(e){
+    const pages =
+      document.querySelectorAll(".page");
 
-    console.log("Saved data load error",e);
+
+    for(let i=0; i<pages.length; i++){
+
+      const page = pages[i];
+
+
+      const canvas =
+        await html2canvas(
+          page,
+          {
+            scale:2,
+            useCORS:true,
+            backgroundColor:"#ffffff",
+            logging:false
+          }
+        );
+
+
+      const imgData =
+        canvas.toDataURL(
+          "image/jpeg",
+          0.95
+        );
+
+
+      if(i > 0){
+
+        pdf.addPage();
+
+      }
+
+
+      pdf.addImage(
+        imgData,
+        "JPEG",
+        0,
+        0,
+        210,
+        297,
+        undefined,
+        "FAST"
+      );
+
+    }
+
+
+    const name =
+      applicantName.value.trim()
+        .replace(/[\\/:*?"<>|]/g,"_")
+        .replace(/\s+/g,"_");
+
+
+    const fileName =
+      name
+        ? "PMAYG_" + name + ".pdf"
+        : "PMAYG_Application.pdf";
+
+
+    pdf.save(fileName);
+
+
+    /* PDF तयार झाल्यावर */
+
+    button.textContent =
+      "PDF डाउनलोड झाले ✓";
+
+
+    setTimeout(() => {
+
+      button.textContent =
+        "अर्ज जमा करा";
+
+      button.disabled = false;
+
+    },2000);
+
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "PDF तयार करताना समस्या आली. कृपया पुन्हा प्रयत्न करा."
+    );
+
+    button.textContent =
+      "अर्ज जमा करा";
+
+    button.disabled = false;
 
   }
 
+
+  document.body.classList.remove("pdf-mode");
+
 }
-
-function newForm(){
-
-  if(confirm("नवीन अर्ज सुरू करायचा आहे का? जुनी माहिती साफ होईल.")){
-
-    form.reset();
-
-    localStorage.removeItem("pmayg_form_data");
-
-    const newNo = generateAppNo();
-
-    localStorage.setItem("pmayg_current_app",newNo);
-
-    appNo.textContent = "अर्ज क्र.: " + newNo;
-  }
-}
-
-function printForm(){
-
-  if(!form.reportValidity()){
-    alert("कृपया सर्व आवश्यक माहिती भरा.");
-    return;
-  }
-
-  window.print();
-}
-
-function submitForm(){
-
-  if(!form.reportValidity()){
-    alert("कृपया सर्व आवश्यक माहिती पूर्ण भरा.");
-    return;
-  }
-
-  saveForm();
-
-  /*
-    Browser print dialog मधून:
-    Destination → Save as PDF
-    Paper size → A4
-    Pages → All
-  */
-
-  alert(
-    "अर्ज तयार आहे.\n\n" +
-    "आता Print मध्ये 'Save as PDF' निवडा.\n" +
-    "PDF फक्त 2 पानांची असेल."
-  );
-
-  window.print();
-}
-
-document.addEventListener("DOMContentLoaded",function(){
-
-  setAppNo();
-  loadForm();
-
-});
