@@ -1,134 +1,212 @@
 const form = document.getElementById("form");
 
 
-/* =========================
-   अर्जदाराचे नाव Automatic
-========================= */
+/* =====================================
+   अर्जदाराचे नाव Automatic भरायचे
+===================================== */
 
 function syncApplicantName(){
 
-  const applicant = document.getElementById("applicantName");
+  const applicantName =
+    document.getElementById("applicantName");
 
-  const affName = document.getElementById("affName");
+  const affidavitName =
+    document.getElementById("affName");
 
-  const affSignName = document.getElementById("affSignName");
+  const signatureName =
+    document.getElementById("affSignName");
 
-  if(!applicant) return;
 
-  const name = applicant.value;
+  if(!applicantName){
 
-  if(affName){
-    affName.value = name;
+    return;
   }
 
-  if(affSignName){
-    affSignName.value = name;
+
+  const name =
+    applicantName.value;
+
+
+  if(affidavitName){
+
+    affidavitName.value =
+      name;
   }
+
+
+  if(signatureName){
+
+    signatureName.value =
+      name;
+  }
+
 }
 
 
-/* =========================
+/* =====================================
    आजची तारीख
-========================= */
+===================================== */
 
 function setToday(){
 
-  const dateInput = document.getElementById("affDate");
+  const dateInput =
+    document.getElementById("affDate");
 
-  if(!dateInput) return;
 
-  const today = new Date();
+  if(!dateInput){
 
-  const year = today.getFullYear();
+    return;
+  }
 
-  const month = String(today.getMonth() + 1).padStart(2,"0");
 
-  const day = String(today.getDate()).padStart(2,"0");
+  const today =
+    new Date();
 
-  dateInput.value = `${year}-${month}-${day}`;
+
+  const year =
+    today.getFullYear();
+
+
+  const month =
+    String(
+      today.getMonth() + 1
+    ).padStart(2,"0");
+
+
+  const day =
+    String(
+      today.getDate()
+    ).padStart(2,"0");
+
+
+  dateInput.value =
+    `${year}-${month}-${day}`;
+
 }
 
 
-/* =========================
-   Local Storage
-========================= */
+/* =====================================
+   FORM DATA SAVE
+===================================== */
 
 function saveFormData(){
 
   const data = {};
 
-  const elements = form.querySelectorAll(
-    "input, select, textarea"
-  );
+
+  const elements =
+    form.querySelectorAll(
+      "input, select, textarea"
+    );
+
 
   elements.forEach(function(el){
 
     if(el.type === "radio"){
 
       if(el.checked){
-        data[el.name] = el.value;
+
+        data[el.name] =
+          el.value;
+
       }
 
-    }else if(el.type === "checkbox"){
+    }
 
-      data[el.name] = el.checked;
+    else if(el.type === "checkbox"){
 
-    }else{
+      data[el.name] =
+        el.checked;
 
-      data[el.name] = el.value;
+    }
+
+    else{
+
+      data[el.name] =
+        el.value;
 
     }
 
   });
 
+
   localStorage.setItem(
     "pmayg_form_data",
     JSON.stringify(data)
   );
+
 }
 
+
+/* =====================================
+   SAVED DATA LOAD
+===================================== */
 
 function loadFormData(){
 
   const saved =
-    localStorage.getItem("pmayg_form_data");
+    localStorage.getItem(
+      "pmayg_form_data"
+    );
 
-  if(!saved) return;
+
+  if(!saved){
+
+    return;
+  }
+
 
   try{
 
-    const data = JSON.parse(saved);
+    const data =
+      JSON.parse(saved);
 
-    Object.keys(data).forEach(function(name){
 
-      const elements =
-        form.querySelectorAll(
-          '[name="' + name + '"]'
+    Object.keys(data).forEach(
+      function(name){
+
+        const elements =
+          form.querySelectorAll(
+            '[name="' + name + '"]'
+          );
+
+
+        elements.forEach(
+          function(el){
+
+            if(el.type === "radio"){
+
+              el.checked =
+                el.value === data[name];
+
+            }
+
+            else if(
+              el.type === "checkbox"
+            ){
+
+              el.checked =
+                data[name] === true;
+
+            }
+
+            else{
+
+              el.value =
+                data[name];
+
+            }
+
+          }
         );
 
-      elements.forEach(function(el){
+      }
+    );
 
-        if(el.type === "radio"){
 
-          el.checked =
-            el.value === data[name];
+  }
 
-        }else if(el.type === "checkbox"){
-
-          el.checked =
-            data[name] === true;
-
-        }else{
-
-          el.value = data[name];
-
-        }
-
-      });
-
-    });
-
-  }catch(error){
+  catch(error){
 
     console.log(
       "Saved data load error:",
@@ -140,18 +218,19 @@ function loadFormData(){
 }
 
 
-/* =========================
-   PDF तयार करणे
-========================= */
+/* =====================================
+   PDF GENERATE + DOWNLOAD
+===================================== */
 
 async function submitForm(){
 
-  /* नाव sync */
+
+  /* नाव आधी Sync */
 
   syncApplicantName();
 
 
-  /* Required fields check */
+  /* Required fields तपासा */
 
   if(!form.reportValidity()){
 
@@ -163,12 +242,12 @@ async function submitForm(){
   }
 
 
-  /* डेटा सेव्ह */
+  /* Data Save */
 
   saveFormData();
 
 
-  /* PDF library check */
+  /* PDF Library Check */
 
   if(
     typeof html2canvas === "undefined" ||
@@ -183,61 +262,89 @@ async function submitForm(){
   }
 
 
-  /* Button लपवणे */
+  /* Submit Button तात्पुरते hide */
 
   const submitArea =
-    document.querySelector(".submit-area");
+    document.querySelector(
+      ".submit-area"
+    );
+
 
   if(submitArea){
-    submitArea.style.visibility = "hidden";
+
+    submitArea.style.visibility =
+      "hidden";
+
   }
 
 
   try{
 
-    const { jsPDF } = window.jspdf;
+
+    const { jsPDF } =
+      window.jspdf;
 
 
-    const pdf = new jsPDF({
+    /* A4 PDF */
 
-      orientation:"portrait",
+    const pdf =
+      new jsPDF({
 
-      unit:"mm",
+        orientation:"portrait",
 
-      format:"a4",
+        unit:"mm",
 
-      compress:true
+        format:"a4",
 
-    });
+        compress:true
 
+      });
+
+
+    /* दोन Pages */
 
     const pages =
-      document.querySelectorAll(".page");
+      document.querySelectorAll(
+        ".page"
+      );
 
 
-    for(let i = 0; i < pages.length; i++){
+    for(
+      let i = 0;
+      i < pages.length;
+      i++
+    ){
 
-      const page = pages[i];
 
+      const page =
+        pages[i];
+
+
+      /* Page ला Canvas मध्ये convert */
 
       const canvas =
-        await html2canvas(page,{
+        await html2canvas(
+          page,
+          {
 
-          scale:2,
+            scale:2,
 
-          useCORS:true,
+            useCORS:true,
 
-          allowTaint:true,
+            allowTaint:true,
 
-          backgroundColor:"#ffffff",
+            backgroundColor:"#ffffff",
 
-          logging:false,
+            logging:false,
 
-          windowWidth:page.scrollWidth,
+            windowWidth:
+              page.scrollWidth,
 
-          windowHeight:page.scrollHeight
+            windowHeight:
+              page.scrollHeight
 
-        });
+          }
+        );
 
 
       const imgData =
@@ -246,6 +353,8 @@ async function submitForm(){
           0.92
         );
 
+
+      /* दुसऱ्या Page साठी नवीन A4 */
 
       if(i > 0){
 
@@ -257,35 +366,53 @@ async function submitForm(){
       }
 
 
+      /* पूर्ण A4 Page */
+
       pdf.addImage(
+
         imgData,
+
         "JPEG",
+
         0,
+
         0,
+
         210,
+
         297,
+
         undefined,
+
         "FAST"
+
       );
 
     }
 
 
-    /* अर्जदाराचे नाव */
+    /* =================================
+       PDF FILE NAME
+    ================================= */
 
     let name =
       document
-        .getElementById("applicantName")
+        .getElementById(
+          "applicantName"
+        )
         .value
         .trim();
 
 
     if(!name){
-      name = "अर्जदार";
+
+      name =
+        "अर्जदार";
+
     }
 
 
-    /* File name मधील चुकीची characters काढणे */
+    /* चुकीची चिन्हे remove */
 
     name =
       name.replace(
@@ -294,8 +421,12 @@ async function submitForm(){
       );
 
 
+    /* PDF Download */
+
     pdf.save(
-      "PMAYG_" + name + ".pdf"
+      "PMAYG_" +
+      name +
+      ".pdf"
     );
 
 
@@ -304,15 +435,24 @@ async function submitForm(){
     );
 
 
-  }catch(error){
+  }
+
+  catch(error){
 
     console.error(error);
+
 
     alert(
       "PDF तयार करताना समस्या आली. कृपया पुन्हा प्रयत्न करा."
     );
 
-  }finally{
+  }
+
+
+  finally{
+
+
+    /* Button परत दिसू द्या */
 
     if(submitArea){
 
@@ -326,20 +466,30 @@ async function submitForm(){
 }
 
 
-/* =========================
-   Page Load
-========================= */
+/* =====================================
+   PAGE LOAD
+===================================== */
 
 document.addEventListener(
   "DOMContentLoaded",
   function(){
 
+    /* जुनी माहिती load */
+
     loadFormData();
+
+
+    /* आजची तारीख */
 
     setToday();
 
+
+    /* नाव sync */
+
     syncApplicantName();
 
+
+    /* नाव टाइप करताना Automatic */
 
     const applicant =
       document.getElementById(
