@@ -1,510 +1,634 @@
 <!DOCTYPE html>
 <html lang="mr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>प्रधानमंत्री आवास योजना - घरकुल अर्ज</title>
+    <title>प्रधानमंत्री आवास योजना - घरकुल अर्ज</title>
 
-<style>
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    padding:20px;
-    background:#f2f2f2;
-    font-family:"Noto Sans Devanagari","Mangal",Arial,sans-serif;
-    color:#222;
-}
-
-.container{
-    max-width:850px;
-    margin:auto;
-    background:white;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 2px 12px rgba(0,0,0,0.15);
-}
-
-h1{
-    text-align:center;
-    margin-bottom:5px;
-    font-size:28px;
-}
-
-.subtitle{
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    margin-bottom:25px;
-}
-
-h2{
-    background:#eee;
-    padding:10px;
-    border-left:5px solid #333;
-    font-size:20px;
-}
-
-label{
-    font-weight:bold;
-}
-
-input, select{
-    width:100%;
-    padding:10px;
-    margin:6px 0 15px;
-    border:1px solid #aaa;
-    border-radius:5px;
-    font-size:16px;
-}
-
-.inline{
-    display:flex;
-    gap:20px;
-    align-items:center;
-    margin-bottom:15px;
-}
-
-.inline label{
-    font-weight:normal;
-}
-
-.inline input{
-    width:auto;
-    margin:0;
-}
-
-.question{
-    margin-bottom:12px;
-}
-
-.radio-group{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:7px;
-}
-
-.radio-group label{
-    font-weight:normal;
-}
-
-.radio-group input{
-    width:auto;
-    margin-right:5px;
-}
-
-.submit-btn{
-    width:100%;
-    background:#198754;
-    color:white;
-    border:none;
-    padding:14px;
-    font-size:19px;
-    font-weight:bold;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-.submit-btn:hover{
-    background:#146c43;
-}
-
-.success{
-    display:none;
-    margin-top:20px;
-    padding:20px;
-    background:#d1e7dd;
-    color:#0f5132;
-    border-radius:6px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.print-btn{
-    margin-top:10px;
-    background:#0d6efd;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-@media(max-width:600px){
-    body{
-        padding:5px;
-    }
-
-    .container{
-        padding:15px;
-    }
-
-    h1{
-        font-size:23px;
-    }
-
-    .subtitle{
-        font-size:17px;
-    }
-}
-
-@media print{
-    body{
-        background:white;
-        padding:0;
-    }
-
-    .container{
-        box-shadow:none;
-        max-width:none;
-    }
-
-    .submit-btn,
-    .print-btn{
-        display:none;
-    }
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <div class="container">
 
-<h1>प्रधानमंत्री आवास योजना</h1>
+    <div class="header">
 
-<div class="subtitle">
-प्रतिक्षा यादीत नाव समाविष्ट करणेसाठी अर्ज
+        <h1>प्रधानमंत्री आवास योजना</h1>
+
+        <h3>प्रतिक्षा यादीत नाव समाविष्ट करणेसाठी अर्ज</h3>
+
+        <div class="location">
+            ता. भोकरदन, जि. जालना
+        </div>
+
+    </div>
+
+
+    <form id="pmayForm">
+
+        <!-- प्राथमिक माहिती -->
+
+        <div class="section-title">
+            प्राथमिक माहिती
+        </div>
+
+        <label>दिनांक</label>
+        <input type="date" id="date" name="date">
+
+
+        <p>
+            प्रति,<br>
+            मा. सरपंच साहेब,<br>
+            ग्रामपंचायत
+        </p>
+
+        <label>ग्रामपंचायतीचे नाव</label>
+        <input type="text" id="gramPanchayat" name="gramPanchayat">
+
+
+        <p>
+            <b>
+                ता. भोकरदन, जि. जालना
+            </b>
+        </p>
+
+
+        <p>
+            <b>
+                विषय :- प्रधानमंत्री आवास योजनाच्या प्रतिक्षा यादीत नाव
+                समाविष्ट करणे बाबत.
+            </b>
+        </p>
+
+
+        <p>
+            महोदय,
+        </p>
+
+
+        <p>
+            वरील विषयी विनंती पुर्वक अर्ज सादर करण्यात येतो की,
+            मी
+        </p>
+
+
+        <label>अर्जदाराचे संपूर्ण नाव</label>
+        <input type="text" id="name" name="name" required>
+
+
+        <label>रा. गाव / पत्ता</label>
+        <input type="text" id="address" name="address">
+
+
+        <p>
+            <b>ता. भोकरदन, जि. जालना</b>
+        </p>
+
+
+        <!-- वैयक्तिक माहिती -->
+
+        <div class="section-title">
+            वैयक्तिक व कौटुंबिक माहिती
+        </div>
+
+
+        <label>१) नांव</label>
+        <input type="text" id="applicantName" name="applicantName">
+
+
+        <label>२) जात</label>
+        <input type="text" id="caste" name="caste">
+
+
+        <label>३) प्रवर्ग</label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="category" value="एस.सी.">
+                एस.सी.
+            </label>
+
+            <label>
+                <input type="radio" name="category" value="एस.टी.">
+                एस.टी.
+            </label>
+
+            <label>
+                <input type="radio" name="category" value="अल्पसंख्यांक">
+                अल्पसंख्यांक
+            </label>
+
+            <label>
+                <input type="radio" name="category" value="ईतर">
+                ईतर
+            </label>
+
+        </div>
+
+
+        <label>
+            ४) सध्या राहत असलेल्या घराचा प्रकार
+        </label>
+
+        <select id="houseType" name="houseType">
+
+            <option value="">-- निवडा --</option>
+
+            <option value="पक्के घर">
+                पक्के घर
+            </option>
+
+            <option value="कच्चे घर">
+                कच्चे घर
+            </option>
+
+            <option value="झोपडी">
+                झोपडी
+            </option>
+
+            <option value="घर नाही">
+                घर नाही
+            </option>
+
+        </select>
+
+
+        <!-- प्रश्न -->
+
+        <div class="question">
+
+            <label>
+                ५) घरकुल बांधण्यासाठी २५ चौ.मी.
+                स्वतःच्या मालकीची जागा आहे का?
+            </label>
+
+            <div class="radio-box">
+
+                <label>
+                    <input type="radio" name="land" value="आहे">
+                    आहे
+                </label>
+
+                <label>
+                    <input type="radio" name="land" value="नाही">
+                    नाही
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                ६) दोन/तीन/चार चाकी मोटरगाडी किंवा
+                तीन/चार चाकी शेतीशी संबंधीत यंत्र आहे का?
+            </label>
+
+            <div class="radio-box">
+
+                <label>
+                    <input type="radio" name="vehicle" value="आहे">
+                    आहे
+                </label>
+
+                <label>
+                    <input type="radio" name="vehicle" value="नाही">
+                    नाही
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                ७) किसान क्रेडीट कार्ड रु.५०,०००/- वरील
+                मर्यादेचे आहे का?
+            </label>
+
+            <div class="radio-box">
+
+                <label>
+                    <input type="radio" name="kcc" value="आहे">
+                    आहे
+                </label>
+
+                <label>
+                    <input type="radio" name="kcc" value="नाही">
+                    नाही
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                ८) कुटूंबात शासकीय कर्मचारी आहे का?
+            </label>
+
+            <div class="radio-box">
+
+                <label>
+                    <input type="radio" name="governmentEmployee" value="आहे">
+                    आहे
+                </label>
+
+                <label>
+                    <input type="radio" name="governmentEmployee" value="नाही">
+                    नाही
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <label>
+                ९) शासनाकडे नोंदणी असलेला बिगर शेती व्यवसाय आहे का?
+            </label>
+
+            <div class="radio-box">
+
+                <label>
+                    <input type="radio" name="business" value="आहे">
+                    आहे
+                </label>
+
+                <label>
+                    <input type="radio" name="business" value="नाही">
+                    नाही
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <label>१०) उत्पन्न रू.</label>
+        <input type="number" id="income" name="income">
+
+
+        <label>११) कुटूंब प्रमुख</label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="familyHead" value="स्त्री">
+                स्त्री
+            </label>
+
+            <label>
+                <input type="radio" name="familyHead" value="पुरुष">
+                पुरुष
+            </label>
+
+        </div>
+
+
+        <label>
+            १२) आयकर, व्यवसायकर भरणा करणारे कुटूंब आहे का?
+        </label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="tax" value="आहे">
+                आहे
+            </label>
+
+            <label>
+                <input type="radio" name="tax" value="नाही">
+                नाही
+            </label>
+
+        </div>
+
+
+        <label>१३) रेफ्रिजरेटर आहे का?</label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="fridge" value="आहे">
+                आहे
+            </label>
+
+            <label>
+                <input type="radio" name="fridge" value="नाही">
+                नाही
+            </label>
+
+        </div>
+
+
+        <label>१४) टेलिफोन/मोबाईल आहे का?</label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="telephone" value="आहे">
+                आहे
+            </label>
+
+            <label>
+                <input type="radio" name="telephone" value="नाही">
+                नाही
+            </label>
+
+        </div>
+
+
+        <!-- जमीन -->
+
+        <div class="section-title">
+            जमिनीची माहिती
+        </div>
+
+
+        <label>१५) ओलिताची जमीन</label>
+        <input
+            type="number"
+            step="0.01"
+            id="irrigatedLand"
+            name="irrigatedLand"
+            placeholder="एकर">
+
+
+        <label>जिरायती जमीन</label>
+        <input
+            type="number"
+            step="0.01"
+            id="dryLand"
+            name="dryLand"
+            placeholder="एकर">
+
+
+        <div class="radio-box">
+
+            <label>
+                <input
+                    type="checkbox"
+                    id="landless"
+                    name="landless">
+                भूमीहिन
+            </label>
+
+        </div>
+
+
+        <label>
+            १६) कुटूंबातील सदस्य अपंग असल्यास त्यांचे नांव
+        </label>
+
+        <input
+            type="text"
+            id="disabledMember"
+            name="disabledMember"
+            placeholder="लागू नसल्यास रिक्त सोडा">
+
+
+        <label>१७) व्यवसाय</label>
+
+        <div class="radio-box">
+
+            <label>
+                <input type="radio" name="occupation" value="शेती">
+                शेती
+            </label>
+
+            <label>
+                <input type="radio" name="occupation" value="नोकरी">
+                नोकरी
+            </label>
+
+            <label>
+                <input type="radio" name="occupation" value="मजुरी">
+                मजुरी
+            </label>
+
+            <label>
+                <input type="radio" name="occupation" value="ईतर">
+                ईतर
+            </label>
+
+        </div>
+
+
+        <label>१८) आधार कार्ड क्रमांक</label>
+
+        <input
+            type="text"
+            id="aadhaar"
+            name="aadhaar"
+            maxlength="12"
+            inputmode="numeric"
+            placeholder="१२ अंकी आधार नंबर">
+
+
+        <label>१९) मो.नं.</label>
+
+        <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            maxlength="10"
+            inputmode="numeric"
+            placeholder="१० अंकी मोबाईल नंबर"
+            required>
+
+
+        <label>
+            २०) यापूर्वी घरकुलाचा लाभ घेतला आहे का?
+        </label>
+
+        <div class="radio-box">
+
+            <label>
+                <input
+                    type="radio"
+                    name="previousBenefit"
+                    value="आहे">
+                आहे
+            </label>
+
+            <label>
+                <input
+                    type="radio"
+                    name="previousBenefit"
+                    value="नाही">
+                नाही
+            </label>
+
+        </div>
+
+
+        <p class="declaration">
+
+            वरील प्रमाणे माझी माहिती सादर करीत असुन माझे नांव
+            प्रधानमंत्री आवास योजनेच्या प्रतिक्षा यादीत समाविष्ठ
+            करण्यात यावे ही नम्र विनंती.
+
+        </p>
+
+
+        <p>
+            <b>सोबत:- प्रतिज्ञापत्र</b>
+        </p>
+
+
+        <div class="signature">
+
+            <p>आपला</p>
+
+            <p>
+                स्वाक्षरी / अंगठा
+            </p>
+
+        </div>
+
+
+        <label>नांव :</label>
+        <input type="text" id="signatureName">
+
+
+        <!-- प्रतिज्ञापत्र -->
+
+        <div class="section-title">
+            प्रतिज्ञापत्र
+        </div>
+
+
+        <p class="declaration">
+
+            मी /अर्जदार श्री/श्रीमती
+        </p>
+
+        <input type="text" id="affidavitName">
+
+
+        <p class="declaration">
+
+            रा.
+        </p>
+
+        <input type="text" id="affidavitAddress">
+
+
+        <p class="declaration">
+
+            ता. भोकरदन जि. जालना प्रतिज्ञापत्र लिहुन देतो की,
+            मी या पुर्वी कोणत्याही आवास योजनेतुन या किंवा इतर
+            कोणत्याही ग्रामपंचायत मधुन घरकुलाचा लाभ घेतलेला नाही
+            व प्रधानमंत्री आवास योजने करीता केलेल्या सोबतच्या
+            अर्जात नमुद सर्व बाबी खऱ्या असुन त्यात काहीही
+            चुकीचे/खोटे आढळल्यास त्यास मी सर्वस्वी जबाबदार राहील
+            व होणाऱ्या कायदेशीर कार्यवाहीस पात्र राहील याची
+            मला जाणीव आहे.
+
+        </p>
+
+
+        <p class="declaration">
+
+            करिता प्रतिज्ञापत्र लिहुन देत आहे जे खरे आहे.
+            अर्जातील माहिती वाचुन, समजुन कोणत्याही प्रकारची नशा,
+            पाणी न करता तसेच कुणाच्याही दबावाला बळी न पडता
+            सही करीत आहे.
+
+        </p>
+
+
+        <label>दिनांक :</label>
+        <input type="date" id="affidavitDate">
+
+
+        <label>स्थळ :</label>
+
+        <input
+            type="text"
+            id="place"
+            value="भोकरदन, जि. जालना">
+
+
+        <div class="signature">
+
+            <p>सही / अंगठा</p>
+
+        </div>
+
+
+        <label>नांव :</label>
+
+        <input type="text" id="affidavitSignatureName">
+
+
+        <!-- Submit -->
+
+        <button
+            type="submit"
+            class="submit-btn">
+
+            अर्ज जमा करा
+
+        </button>
+
+    </form>
+
+
+    <!-- Success -->
+
+    <div
+        id="successBox"
+        class="success-box">
+
+        <h2>✅ अर्ज यशस्वीरित्या जमा झाला!</h2>
+
+        <p>
+            तुमचा अर्ज क्रमांक:
+        </p>
+
+        <div
+            id="applicationNumber"
+            class="application-number">
+        </div>
+
+
+        <button
+            onclick="printApplication()"
+            class="print-btn">
+
+            🖨️ अर्ज प्रिंट / PDF
+
+        </button>
+
+
+        <button
+            onclick="sendWhatsApp()"
+            class="whatsapp-btn">
+
+            📱 WhatsApp वर पाठवा
+
+        </button>
+
+    </div>
+
 </div>
 
-<h2>प्राथमिक माहिती</h2>
 
-<label>दिनांक</label>
-<input type="date" id="date">
-
-<p>प्रति,</p>
-
-<p>
-मा. सरपंच साहेब,<br>
-कार्यालय ग्राम पंचायत,
-<input type="text" placeholder="ग्रामपंचायतीचे नाव">
-<strong>ता. भोकरदन, जि. जालना</strong>
-</p>
-
-<p>
-<strong>विषय :- प्रधानमंत्री आवास योजनाच्या प्रतिक्षा यादीत नाव समाविष्ट करणे बाबत.</strong>
-</p>
-
-<p>
-महोदय,
-</p>
-
-<p>
-वरील विषयी विनंती पुर्वक अर्ज सादर करण्यात येतो की,
-मी
-<input type="text" placeholder="संपूर्ण नाव">
-रा.
-<input type="text" placeholder="गाव / पत्ता">
-<strong>ता. भोकरदन, जि. जालना</strong>
-येथील रहिवाशी असुन माझ्या बाबतची माहिती खालील प्रमाणे आहे.
-</p>
-
-
-<h2>वैयक्तिक व कौटुंबिक माहिती</h2>
-
-<div class="question">
-<label>१) नांव</label>
-<input type="text">
-</div>
-
-<div class="question">
-<label>२) जात</label>
-<input type="text">
-</div>
-
-<div class="question">
-<label>३) प्रवर्ग</label>
-
-<div class="radio-group">
-<label><input type="radio" name="category"> एस.सी.</label>
-<label><input type="radio" name="category"> एस.टी.</label>
-<label><input type="radio" name="category"> अल्पसंख्यांक</label>
-<label><input type="radio" name="category"> ईतर</label>
-</div>
-</div>
-
-<div class="question">
-<label>४) सध्या राहत असलेल्या घराचा प्रकार:</label>
-
-<select>
-<option value="">-- निवडा --</option>
-<option>पक्के घर</option>
-<option>कच्चे घर</option>
-<option>झोपडी</option>
-<option>घर नाही</option>
-</select>
-</div>
-
-
-<div class="question">
-<label>
-५) घरकुल बांधण्यासाठी २५ चौ.मी. स्वतःच्या मालकीची जागा आहे का?
-</label>
-
-<div class="radio-group">
-<label><input type="radio" name="land"> आहे</label>
-<label><input type="radio" name="land"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>
-६) दोन/तीन/चार चाकी मोटरगाडी किंवा तीन/चार चाकी शेतीशी संबंधीत यंत्र आहे का?
-</label>
-
-<div class="radio-group">
-<label><input type="radio" name="vehicle"> आहे</label>
-<label><input type="radio" name="vehicle"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>
-७) किसान क्रेडीट कार्ड रु.५०,०००/- वरील मर्यादेचे आहे का?
-</label>
-
-<div class="radio-group">
-<label><input type="radio" name="kcc"> आहे</label>
-<label><input type="radio" name="kcc"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>८) कुटूंबात शासकीय कर्मचारी आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="employee"> आहे</label>
-<label><input type="radio" name="employee"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>९) शासनाकडे नोंदणी असलेला बिगर शेती व्यवसाय आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="business"> आहे</label>
-<label><input type="radio" name="business"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१०) उत्पन्न रू.</label>
-<input type="number">
-</div>
-
-
-<div class="question">
-<label>११) कुटूंब प्रमुख</label>
-
-<div class="radio-group">
-<label><input type="radio" name="head"> स्त्री</label>
-<label><input type="radio" name="head"> पुरुष</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१२) आयकर, व्यवसायकर भरणा करणारे कुटूंब आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="tax"> आहे</label>
-<label><input type="radio" name="tax"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१३) रेफ्रिजरेटर आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="fridge"> आहे</label>
-<label><input type="radio" name="fridge"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१४) टेलिफोन/मोबाईल आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="phone"> आहे</label>
-<label><input type="radio" name="phone"> नाही</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१५) जमिन क्षेत्र</label>
-
-<input type="number" placeholder="0"> एकर ओलिताची
-
-<input type="number" placeholder="0"> एकर जिरायती
-
-<div class="radio-group">
-<label><input type="radio" name="landtype"> भूमीहिन</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>
-१६) कुटूंबातील सदस्य अपंग असल्यास त्यांचे नांव
-</label>
-
-<input type="text" placeholder="लागू नसल्यास रिक्त सोडा">
-</div>
-
-
-<div class="question">
-<label>१७) व्यवसाय</label>
-
-<div class="radio-group">
-<label><input type="radio" name="work"> शेती</label>
-<label><input type="radio" name="work"> नोकरी</label>
-<label><input type="radio" name="work"> मजुरी</label>
-<label><input type="radio" name="work"> ईतर</label>
-</div>
-</div>
-
-
-<div class="question">
-<label>१८) आधार कार्ड क्रमांक</label>
-
-<input
-type="text"
-maxlength="12"
-inputmode="numeric"
-placeholder="१२ अंकी आधार नंबर">
-</div>
-
-
-<div class="question">
-<label>१९) मो.नं.</label>
-
-<input
-type="tel"
-maxlength="10"
-inputmode="numeric"
-placeholder="१० अंकी मोबाईल नंबर">
-</div>
-
-
-<div class="question">
-<label>२०) यापूर्वी घरकुलाचा लाभ घेतला आहे का?</label>
-
-<div class="radio-group">
-<label><input type="radio" name="benefit"> आहे</label>
-<label><input type="radio" name="benefit"> नाही</label>
-</div>
-</div>
-
-
-<p>
-वरील प्रमाणे माझी माहिती सादर करीत असुन माझे नांव
-प्रधानमंत्री आवास योजनेच्या प्रतिक्षा यादीत समाविष्ठ करण्यात यावे
-ही नम्र विनंती.
-</p>
-
-<p><strong>सोबत:- प्रतिज्ञापत्र</strong></p>
-
-<br>
-
-<p style="text-align:right;">
-आपला<br>
-स्वाक्षरी / अंगठा
-</p>
-
-<label>नांव :</label>
-<input type="text">
-
-
-<h2>प्रतिज्ञापत्र</h2>
-
-<p>
-मी /अर्जदार श्री/श्रीमती
-<input type="text">
-रा.
-<input type="text">
-<strong>ता. भोकरदन जि. जालना</strong>
-प्रतिज्ञापत्र लिहुन देतो की, मी या पुर्वी कोणत्याही आवास योजनेतुन
-या किंवा इतर कोणत्याही ग्रामपंचायत मधुन घरकुलाचा लाभ घेतलेला नाही
-व प्रधानमंत्री आवास योजने करीता केलेल्या सोबतच्या अर्जात नमुद सर्व
-बाबी खऱ्या असुन त्यात काहीही चुकीचे/खोटे आढळल्यास त्यास मी
-सर्वस्वी जबाबदार राहील व होणाऱ्या कायदेशीर कार्यवाहीस पात्र राहील
-याची मला जाणीव आहे.
-</p>
-
-<p>
-करिता प्रतिज्ञापत्र लिहुन देत आहे जे खरे आहे.
-अर्जातील माहिती वाचुन,समजुन कोणत्याही प्रकारची नशा,पाणी न करता
-तसेच कुणाच्याही दबावाला बळी न पडता सही करीत आहे.
-</p>
-
-<label>दिनांक :</label>
-<input type="date">
-
-<label>स्थळ :</label>
-<input type="text" value="भोकरदन, जि. जालना">
-
-<p style="text-align:right;">
-सही / अंगठा
-</p>
-
-<label>नांव :</label>
-<input type="text">
-
-<br><br>
-
-<button class="submit-btn" onclick="submitForm()">
-अर्ज जमा करा
-</button>
-
-<div class="success" id="success">
-अर्ज यशस्वीरित्या सबमिट झाला!<br><br>
-तुमची माहिती जतन करण्यात आली आहे.
-<br><br>
-
-<button class="print-btn" onclick="window.print()">
-अर्ज प्रिंट करा
-</button>
-</div>
-
-</div>
-
-
-<script>
-
-function submitForm(){
-
-    document.getElementById("success").style.display="block";
-
-    window.scrollTo({
-        top:document.body.scrollHeight,
-        behavior:"smooth"
-    });
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
