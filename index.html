@@ -29,8 +29,6 @@
 
     <form id="pmayForm">
 
-        <!-- प्राथमिक माहिती -->
-
         <div class="section-title">
             प्राथमिक माहिती
         </div>
@@ -50,9 +48,7 @@
 
 
         <p>
-            <b>
-                ता. भोकरदन, जि. जालना
-            </b>
+            <b>ता. भोकरदन, जि. जालना</b>
         </p>
 
 
@@ -64,9 +60,7 @@
         </p>
 
 
-        <p>
-            महोदय,
-        </p>
+        <p>महोदय,</p>
 
 
         <p>
@@ -87,8 +81,6 @@
             <b>ता. भोकरदन, जि. जालना</b>
         </p>
 
-
-        <!-- वैयक्तिक माहिती -->
 
         <div class="section-title">
             वैयक्तिक व कौटुंबिक माहिती
@@ -130,34 +122,22 @@
         </div>
 
 
-        <label>
-            ४) सध्या राहत असलेल्या घराचा प्रकार
-        </label>
+        <label>४) सध्या राहत असलेल्या घराचा प्रकार</label>
 
         <select id="houseType" name="houseType">
 
             <option value="">-- निवडा --</option>
 
-            <option value="पक्के घर">
-                पक्के घर
-            </option>
+            <option value="पक्के घर">पक्के घर</option>
 
-            <option value="कच्चे घर">
-                कच्चे घर
-            </option>
+            <option value="कच्चे घर">कच्चे घर</option>
 
-            <option value="झोपडी">
-                झोपडी
-            </option>
+            <option value="झोपडी">झोपडी</option>
 
-            <option value="घर नाही">
-                घर नाही
-            </option>
+            <option value="घर नाही">घर नाही</option>
 
         </select>
 
-
-        <!-- प्रश्न -->
 
         <div class="question">
 
@@ -351,14 +331,13 @@
         </div>
 
 
-        <!-- जमीन -->
-
         <div class="section-title">
             जमिनीची माहिती
         </div>
 
 
         <label>१५) ओलिताची जमीन</label>
+
         <input
             type="number"
             step="0.01"
@@ -368,6 +347,7 @@
 
 
         <label>जिरायती जमीन</label>
+
         <input
             type="number"
             step="0.01"
@@ -493,18 +473,17 @@
 
             <p>आपला</p>
 
-            <p>
-                स्वाक्षरी / अंगठा
-            </p>
+            <p>स्वाक्षरी / अंगठा</p>
 
         </div>
 
 
         <label>नांव :</label>
-        <input type="text" id="signatureName">
 
+        <input
+            type="text"
+            id="signatureName">
 
-        <!-- प्रतिज्ञापत्र -->
 
         <div class="section-title">
             प्रतिज्ञापत्र
@@ -512,19 +491,21 @@
 
 
         <p class="declaration">
-
             मी /अर्जदार श्री/श्रीमती
         </p>
 
-        <input type="text" id="affidavitName">
+        <input
+            type="text"
+            id="affidavitName">
 
 
         <p class="declaration">
-
             रा.
         </p>
 
-        <input type="text" id="affidavitAddress">
+        <input
+            type="text"
+            id="affidavitAddress">
 
 
         <p class="declaration">
@@ -552,7 +533,10 @@
 
 
         <label>दिनांक :</label>
-        <input type="date" id="affidavitDate">
+
+        <input
+            type="date"
+            id="affidavitDate">
 
 
         <label>स्थळ :</label>
@@ -572,10 +556,10 @@
 
         <label>नांव :</label>
 
-        <input type="text" id="affidavitSignatureName">
+        <input
+            type="text"
+            id="affidavitSignatureName">
 
-
-        <!-- Submit -->
 
         <button
             type="submit"
@@ -588,17 +572,13 @@
     </form>
 
 
-    <!-- Success -->
-
     <div
         id="successBox"
         class="success-box">
 
         <h2>✅ अर्ज यशस्वीरित्या जमा झाला!</h2>
 
-        <p>
-            तुमचा अर्ज क्रमांक:
-        </p>
+        <p>तुमचा अर्ज क्रमांक:</p>
 
         <div
             id="applicationNumber"
